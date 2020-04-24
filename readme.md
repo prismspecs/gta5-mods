@@ -1,4 +1,5 @@
 + Useful links
+  + https://github.com/crosire/scripthookvdotnet/tree/master/source/scripting_v3/GTA
   + https://github.com/crosire/scripthookvdotnet/wiki/Getting-Started
   + I just googled around and got the latest ScriptHookV and ScriptHookVDotNot as well as OpenIV
   + Probably can get them from: https://github.com/crosire/scripthookvdotnet/releases
