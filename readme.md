@@ -1,4 +1,5 @@
 + Useful links
+  + [Francis Generated the Documentation](https://frnsys.com/misc/gtav/)
   + https://github.com/crosire/scripthookvdotnet/tree/master/source/scripting_v3/GTA
   + https://github.com/crosire/scripthookvdotnet/wiki/Getting-Started
   + I just googled around and got the latest ScriptHookV and ScriptHookVDotNot as well as OpenIV
