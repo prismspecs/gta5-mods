@@ -3,6 +3,9 @@
   + I just googled around and got the latest ScriptHookV and ScriptHookVDotNot as well as OpenIV
   + Probably can get them from: https://github.com/crosire/scripthookvdotnet/releases
   + Tutorial series to get up and running: https://www.youtube.com/watch?v=PaQZEdES7No&list=PLbhQKmLHe3WVkQx1oO3XZuGcfk0ddzlUt&index=1
+  + https://gtaforums.com/topic/814258-c-ultimate-modding-thread/
+  + https://gtaforums.com/topic/793572-vnet-creating-c-scripts-for-v/
+  + [[.NET] [C#] [SHVDN] Modding Basics! Vector3s and Vehicles Manipulation [Part 3]](https://forums.gta5-mods.com/topic/7113/net-c-shvdn-modding-basics-vector3s-and-vehicles-manipulation-part-3)
 
 + Install all of the C# stuff in VS (I used Community 2017), its 15gb or so
 + Installed all the ScriptHook stuff above
