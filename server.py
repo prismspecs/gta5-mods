@@ -1,24 +1,82 @@
 import socket
 import time
 
-HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
-PORT = 3000        # Port to listen on (non-privileged ports are > 1023)
+# how many characters the header length is
+# just going to be used to let socket know how much
+# data to expect
+HEADERSIZE = 10
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen()
-    conn, addr = s.accept()
-    with conn:
-        print('Connected by', addr)
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# socket.gethostname() returns localhost name
+s.bind((socket.gethostname(), 1234))
+s.listen()
+
+while True:
+    # now our endpoint knows about the OTHER endpoint
+    clientsocket, address = s.accept()
+    print(f"Connection from {address} has been established.")
+
+    msg = "Welcome to the server!"
+    msg = f"{len(msg):<{HEADERSIZE}}"+msg
+    #print(msg)
+
+    clientsocket.send(bytes(msg,"utf-8"))
+
+    while True:
         try:
+            # send
+            msg = f"The time is {time.time()}"
+            msg = f"{len(msg):<{HEADERSIZE}}"+msg
+
+            print(msg)
+
+            clientsocket.send(bytes(msg,"utf-8"))
+
+            # receive
+            data = clientsocket.recv(1024)
+            print("received:", data.decode("utf-8"))
+
+            if not data:
+                break
+
+            time.sleep(1)
+        except ConnectionResetError:
+            print("client disconnected")
+            s.close()
+            break
+        except socket.error as e:
+            print("got unhandled error ", e)
+
+'''
+import socket
+import time
+
+HOST = '127.0.0.1'
+PORT = 1234
+
+print("your hostname is", socket.gethostname())
+
+while True:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.bind((HOST, PORT))
+        s.listen()
+        conn, addr = s.accept()
+        with conn:
+            print("connected by", addr)
             while True:
-                data = conn.recv(1024)
-                print('Received: ', data)
-                if not data:
+                try:
+                    data = conn.recv(1024)
+                    print("received:", data.decode("utf-8"))
+                    if not data:
+                        break
+                    #conn.sendall(data)
+                    #conn.sendall(b'test\n')
+                    conn.send(bytes("you connected to the server", "utf-8"))
+                    time.sleep(0.1)
+                except ConnectionResetError:
+                    print("client disconnected")
+                    s.close()
                     break
-                conn.sendall(data)
-                conn.sendall(b'fuc')
-                time.sleep(0.1)
-        except KeyboardInterrupt:
-            print("press ctrl c to terminate")
-            pass
+                except socket.error as e:
+                    print("got unhandled error ", e)
+'''

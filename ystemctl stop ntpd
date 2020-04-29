@@ -1,0 +1,18 @@
+● systemd-timesyncd.service - Network Time Synchronization
+   Loaded: loaded (/lib/systemd/system/systemd-timesyncd.service; disabled; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/systemd-timesyncd.service.d
+           └─disable-with-time-daemon.conf
+   Active: inactive (dead)
+Condition: start [0;1;33mcondition failed[0m at Tue 2020-04-28 18:44:39 EDT; 7s ago
+     Docs: man:systemd-timesyncd.service(8)
+
+Apr 28 18:36:34 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:38:34 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:38:35 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:38:36 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:38:41 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:38:42 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:40:04 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:42:51 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:44:38 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
+Apr 28 18:44:39 etherboy systemd[1]: Condition check resulted in Network Time Synchronization being skipped.
