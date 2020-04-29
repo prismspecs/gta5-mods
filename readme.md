@@ -18,8 +18,13 @@
 + Used savegame to bypass prologue mission
   + https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
 
-+ Some tutorials
++ Some tutorials/info
   + https://forums.gta5-mods.com/topic/13821/tutorial-making-a-c-bodyguard-script-with-grand-theft-auto-v-mod-creator
   + https://gtaforums.com/topic/813669-cnet-simple-helpful-functions/
   + https://forums.gta5-mods.com/category/8/tutorials
   + https://gtaforums.com/topic/843323-c-making-peds-fight-each-other-with-specific-weapon-question/ (having peds fight each other)
+  + [Documentation: TASK_GO_STRAIGHT_TO_COORD on Ped movement](https://gtamods.com/wiki/TASK_GO_STRAIGHT_TO_COORD)
+  + [Forum: Task GOTO_ENTITY](https://gtaforums.com/topic/807241-task_goto_entity-k9-script/)
+  + [Search for GTA.Native on GitHub to browse open source mods](https://github.com/search?p=7&q=using+GTA.Native%3B&type=Code)
+  + [Mod: RealWeather, use real weather data in game](https://gitlab.com/Jitnaught/RealWeather-GTA5/-/blob/master/RealWeather/script.cpp#L267)
+  + [Forum: How to create new Threads in GTA](https://forums.gta5-mods.com/topic/28846/is-it-possible-to-create-new-threads-inside-a-gta5-script/5)
