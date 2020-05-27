@@ -1,3 +1,48 @@
+## Getting Visual Studio set up for modding
++ Install all of the C# stuff in VS (I used Community 2017), its 15gb or so
++ Installed all the ScriptHook stuff above
++ New Project -> Visual C# -> Class Library (.NET Framework)
++ Need to make sure that the target framework is the same as current ScriptHookV version, which for me is currently 4.8
++ Right click References -> Add Reference -> System.Windows.Forms and then "Browse" to find ScriptHookV .Net dll
++ Basic script structure:
+```
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Text;
+using GTA;
+using GTA.Native;
+using GTA.Math;
+
+public class Test : Script
+{
+
+
+    public Test()
+    {
+        this.Tick += onTick;
+        this.KeyUp += onKeyUp;
+        this.KeyDown += onKeyDown;
+    }
+
+    private void onTick(object sender, EventArgs e)
+    {
+    }
+
+    private void onKeyUp(object sender, KeyEventArgs e)
+    {
+    }
+
+    private void onKeyDown(object sender, KeyEventArgs e)
+    {
+    }
+}
+```
+
++ Used savegame to bypass prologue mission
+  + https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
+
 + Useful links
   + [Francis Generated the Documentation](https://frnsys.com/misc/gtav/)
   + https://github.com/crosire/scripthookvdotnet/tree/master/source/scripting_v3/GTA
@@ -8,15 +53,6 @@
   + https://gtaforums.com/topic/814258-c-ultimate-modding-thread/
   + https://gtaforums.com/topic/793572-vnet-creating-c-scripts-for-v/
   + [[.NET] [C#] [SHVDN] Modding Basics! Vector3s and Vehicles Manipulation [Part 3]](https://forums.gta5-mods.com/topic/7113/net-c-shvdn-modding-basics-vector3s-and-vehicles-manipulation-part-3)
-
-+ Install all of the C# stuff in VS (I used Community 2017), its 15gb or so
-+ Installed all the ScriptHook stuff above
-+ New Project -> Visual C# -> Class Library (.NET Framework)
-+ Need to make sure that the target framework is the same as current ScriptHookV version, which in my case was 4.5.2 (this can be changed)
-+ Right click References -> Add Reference -> System.Windows.Forms and then "Browse" to find ScriptHookV .Net dll
-
-+ Used savegame to bypass prologue mission
-  + https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
 
 + Some tutorials/info
   + https://forums.gta5-mods.com/topic/13821/tutorial-making-a-c-bodyguard-script-with-grand-theft-auto-v-mod-creator
