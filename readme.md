@@ -17,8 +17,6 @@ using GTA.Math;
 
 public class Test : Script
 {
-
-
     public Test()
     {
         this.Tick += onTick;
