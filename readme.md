@@ -65,7 +65,3 @@ public class Test : Script
   + [Mod: RealWeather, use real weather data in game](https://gitlab.com/Jitnaught/RealWeather-GTA5/-/blob/master/RealWeather/script.cpp#L267)
   + [Forum: How to create new Threads in GTA](https://forums.gta5-mods.com/topic/28846/is-it-possible-to-create-new-threads-inside-a-gta5-script/5)
   + [DeepDrive on GitHub: Using OpenAI Universe to pilot GTA5 car](https://github.com/deepdrive/deepdrive)
-
-
-remember that people are mostly unfamiliar w the idea of ethics and self-driving cars, so give examples of scenarios that a car could encounter
-then we can use that as a way to discuss the inscription of ethics into systems more broadly
