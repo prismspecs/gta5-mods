@@ -37,6 +37,11 @@ public class Test : Script
     }
 }
 ```
++ Make sure to set up ScriptHookVDotNet.ini with a reload key
+```
+ReloadKey=Insert
+ConsoleKey=F4 
+```
 
 + Used savegame to bypass prologue mission
   + https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
