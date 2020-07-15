@@ -35,12 +35,13 @@ namespace Testing
 
             //RaycastResult rc = Raycast(Vector3 source, Vector3 direction, float maxDistance, IntersectOptions options, Entity ignoreEntity = null);
             //RaycastResult rc = World.Raycast(source, direction, 999, IntersectOptions.Everything, null);
-            RaycastResult rc = World.Raycast(source, Game.Player.Character.ForwardVector, IntersectOptions.Everything);
+            RaycastResult rc = World.Raycast(source, Game.Player.Character.ForwardVector, IntersectFlags.Everything);
 
-            World.DrawMarker(MarkerType.VerticalCylinder, rc.HitCoords, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 1f), Color.Yellow);
+            
+            World.DrawMarker(MarkerType.VerticalCylinder, rc.HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 1f), Color.Yellow);
 
 
-            World.DrawMarker(MarkerType.VerticalCylinder, World.GetCrosshairCoordinates().HitCoords, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 2f), Color.Red);
+            World.DrawMarker(MarkerType.VerticalCylinder, World.GetCrosshairCoordinates().HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 2f), Color.Red);
 
             //UI.Notify(rc.HitCoords.ToString());
         }

@@ -33,9 +33,9 @@ public class TCPhook : Script
 
         this.Interval = 1000;   // run every second
 
-        UI.Notify("script started");
+        GTA.UI.Notification.Show("script started");
         Host = Dns.GetHostName();
-        UI.Notify("looking for host " + Host);
+        GTA.UI.Notification.Show("looking for host " + Host);
         setupSocket();
 
     }
@@ -49,11 +49,11 @@ public class TCPhook : Script
             theWriter = new StreamWriter(theStream);
             theReader = new StreamReader(theStream);
             socketReady = true;
-            UI.Notify("connected to " + Host);
+            GTA.UI.Notification.Show("connected to " + Host);
         }
         catch (Exception e)
         {
-            UI.Notify("Socket error:" + e);
+            GTA.UI.Notification.Show("Socket error:" + e);
         }
     }
 
@@ -111,7 +111,7 @@ public class TCPhook : Script
         if(theStream.CanRead)
         {
             String incoming = readSocket();
-            UI.Notify("Received: " + incoming);
+            GTA.UI.Notification.Show("Received: " + incoming);
 
             if(incoming == "Forward")
             {
@@ -134,10 +134,10 @@ public class TCPhook : Script
 
     private void onKeyUp(object sender, KeyEventArgs e)
     {
-        //UI.Notify("key pressed");
+        //GTA.UI.Notification.Show("key pressed");
         if (e.KeyCode == Keys.NumPad3)
         {
-            UI.Notify("sending test123 to server");
+            GTA.UI.Notification.Show("sending test123 to server");
             writeSocket("test123");
         }
 
