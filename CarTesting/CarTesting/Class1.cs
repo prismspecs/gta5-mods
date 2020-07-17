@@ -36,6 +36,8 @@ public class CarTesting : Script
         this.Tick += onTick;
         this.KeyUp += onKeyUp;
         this.KeyDown += onKeyDown;
+
+        Game.Player.Character.Task.ClearAllImmediately();
     }
 
     private void onTick(object sender, EventArgs e)
@@ -89,9 +91,13 @@ public class CarTesting : Script
             Vehicle vehicle1 = GTA.World.CreateVehicle(VehicleHash.Taxi, player.Position + player.ForwardVector * 6);
             vehicle1.PlaceOnGround();
 
-            string model_name = "a_m_y_business_02";
-            Ped civilian1 = GTA.World.CreatePed(model_name, player.Position + (player.ForwardVector * 3f));
-            civilian1.VehicleDrivingFlags = VehicleDrivingFlags.FollowTraffic;
+            //string model_name = "a_m_y_business_02";
+            //Vector3 playerPos = player.Position + (player.ForwardVector * 8f);
+            //float Z = World.GetGroundHeight(playerPos);
+            //Vector3 groundedPos = new Vector3(playerPos.X, playerPos.Y, Z);
+            //Vector3 civPos = World.GetNextPositionOnStreet((player.Position + (player.ForwardVector * 3f)).Around(1f));
+            //Ped civilian1 = GTA.World.CreatePed(model_name, groundedPos);
+            //civilian1.VehicleDrivingFlags = VehicleDrivingFlags.FollowTraffic;
 
             //civilian1.Task.ClearAllImmediately();
             //civilian1.Task.EnterVehicle(vehicle1, VehicleSeat.Any, -1, 10f);
@@ -103,8 +109,7 @@ public class CarTesting : Script
             if (Game.IsWaypointActive)
             {
                 target1 = World.WaypointPosition;
-                target1 = World.GetNextPositionOnStreet(target1.Around(10f));
-                GTA.UI.Screen.ShowSubtitle("Destination Set");
+                target1 = World.GetNextPositionOnStreet(target1.Around(100f));
             }
 
             TaskSequence taskSeq = new TaskSequence();
@@ -115,9 +120,7 @@ public class CarTesting : Script
             //civilian1.Task.PerformSequence(taskSeq);
             player.Task.PerformSequence(taskSeq);
 
-            
-
-}
+        }
 
         if (e.KeyCode == Keys.L)
         {
