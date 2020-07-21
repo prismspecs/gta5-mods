@@ -35,6 +35,34 @@ public class BeatCops : Script
         // 
         if (e.KeyCode == Keys.H)
         {
+            /*
+            ||||||||||||||||| Begin Software 4 Artists |||||||||||||||||
+            */
+
+            Ped player = Game.Player.Character;
+            GTA.Math.Vector3 spawn_location = player.Position + (player.ForwardVector * 5f);
+            //string model_name = "a_m_y_business_02";
+            string model_name = "s_m_y_cop_01";
+
+            Ped ped1 = GTA.World.CreatePed(model_name, spawn_location);
+            ped1.Weapons.Give(WeaponHash.Bat, 999, true, true);
+
+            model_name = "s_m_y_cop_01";
+            Ped ped2 = GTA.World.CreatePed(model_name, player.Position + (player.ForwardVector * 6f));
+            ped2.Weapons.Give(WeaponHash.Bat, 999, true, true);
+
+            // make them fight!
+            ped1.Task.ClearAllImmediately();
+            ped2.Task.ClearAllImmediately();
+            ped1.Task.FightAgainst(ped2);
+            ped2.Task.FightAgainst(ped1);
+
+            /*
+            |||||||||||||||||| End Software 4 Artists |||||||||||||||||
+            */
+
+
+
             // experiment 1
             //GTA.UI.Screen.ShowSubtitle("creating a cop");            
 
@@ -133,22 +161,22 @@ public class BeatCops : Script
             //cop1.RelationshipGroup = playerGroup;
 
             // experiment 6 ...
-            Ped player = Game.Player.Character;
-            GTA.Math.Vector3 spawnLoc = player.Position + (player.ForwardVector * 5f);
-            string model_name = "a_m_y_business_02";
-            //string model_name = "s_m_y_cop_01";
+            //Ped player = Game.Player.Character;
+            //GTA.Math.Vector3 spawnLoc = player.Position + (player.ForwardVector * 5f);
+            //string model_name = "a_m_y_business_02";
+            ////string model_name = "s_m_y_cop_01";
 
-            Ped ped1 = GTA.World.CreatePed(model_name, spawnLoc);
-            ped1.Weapons.Give(WeaponHash.Bat, 999, true, true);
+            //Ped ped1 = GTA.World.CreatePed(model_name, spawnLoc);
+            //ped1.Weapons.Give(WeaponHash.Bat, 999, true, true);
 
-            model_name = "s_m_y_cop_01";
-            Ped ped2 = GTA.World.CreatePed(model_name, player.Position + (player.ForwardVector * 5f));
-            ped2.Weapons.Give(WeaponHash.Bat, 999, true, true);
+            //model_name = "s_m_y_cop_01";
+            //Ped ped2 = GTA.World.CreatePed(model_name, player.Position + (player.ForwardVector * 5f));
+            //ped2.Weapons.Give(WeaponHash.Bat, 999, true, true);
 
-            ped1.Task.ClearAllImmediately();
-            ped2.Task.ClearAllImmediately();
-            ped1.Task.FightAgainst(ped2);
-            ped2.Task.FightAgainst(ped1);
+            //ped1.Task.ClearAllImmediately();
+            //ped2.Task.ClearAllImmediately();
+            //ped1.Task.FightAgainst(ped2);
+            //ped2.Task.FightAgainst(ped1);
 
         }
 
