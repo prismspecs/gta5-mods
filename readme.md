@@ -1,11 +1,22 @@
-## Getting Visual Studio set up for modding
-+ Install all of the C# stuff in VS (I used Community 2017), its 15gb or so
-+ Installed all the ScriptHook stuff
+## Getting GTA5 set up for modding
++ Download GTA5
++ Download and install the latest Script Hook V .NET and place the files in GTA main directory
   + https://github.com/crosire/scripthookvdotnet/releases
+  
+## Getting Visual Studio set up for modding
+Install the following
++ Under "Workloads"
+  + .NET desktop development
+  + Universal Windows Platform Development (not certain this is necessary)
++ Under Individual Components
+  + .NET Framework 4.8 SDK
+  + .NET Framework 4.8 targeting pack
+To create a new project:
 + New Project -> Visual C# -> Class Library (.NET Framework)
-+ Need to make sure that the target framework is the same as current ScriptHookV version, which for me is currently 4.8
-+ Right click References -> Add Reference -> System.Windows.Forms and then "Browse" to find ScriptHookV .Net dll
-+ Basic script structure:
++ Need to make sure that the target framework is the same as current ScriptHookV version, which at the time of writing this is 4.8
++ Right click References -> Add Reference -> System.Windows.Forms, and then "Browse" to find ScriptHookV .NET .dll (which you downloaded as noted above)
+
+Basic script structure:
 ```
 using System;
 using System.Collections.Generic;
@@ -38,14 +49,14 @@ public class Test : Script
     }
 }
 ```
-+ Make sure to set up ScriptHookVDotNet.ini with a reload key
+Make sure to set up ScriptHookVDotNet.ini with a reload key
 ```
 ReloadKey=Insert
 ConsoleKey=F4 
 ```
 
-+ Used savegame to bypass prologue mission
-  + https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
+Used savegame to bypass prologue mission
++ https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
   
  
 ## Open source mods
