@@ -60,6 +60,7 @@ ConsoleKey=F4
 
 Used savegame to bypass prologue mission
 + https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
++ or fully complete game: https://www.gta5-mods.com/misc/ultimate-100-perfect-game-save-flava0ne/download/15076
   
  
 ## Open source mods
