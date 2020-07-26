@@ -11,6 +11,7 @@ Install the following
 + Under Individual Components
   + .NET Framework 4.8 SDK
   + .NET Framework 4.8 targeting pack
+
 To create a new project:
 + New Project -> Visual C# -> Class Library (.NET Framework)
 + Need to make sure that the target framework is the same as current ScriptHookV version, which at the time of writing this is 4.8
