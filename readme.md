@@ -1,6 +1,8 @@
 ## Getting GTA5 set up for modding
 + Download GTA5
-+ Download and install the latest Script Hook V .NET and place the files in GTA main directory
++ Download and install the latest ScriptHookV and place in main GTA dir
+  + http://www.dev-c.com/gtav/scripthookv/
++ Download and install the latest Script Hook V .NET and place in main GTA dir
   + https://github.com/crosire/scripthookvdotnet/releases
   
 ## Getting Visual Studio set up for modding
@@ -58,6 +60,7 @@ ConsoleKey=F4
 
 Used savegame to bypass prologue mission
 + https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
++ or fully complete game: https://www.gta5-mods.com/misc/ultimate-100-perfect-game-save-flava0ne/download/15076
   
  
 ## Open source mods
