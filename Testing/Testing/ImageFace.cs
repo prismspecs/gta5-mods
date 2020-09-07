@@ -38,74 +38,95 @@ namespace Testing
             GetWeird();
 
             // screen to world: using mouse to get 3d coords
-            //Function.Call((Hash)0xAAE7CE1D63167423);
-            Game.EnableControlThisFrame(GTA.Control.CursorX);
-            Game.EnableControlThisFrame(GTA.Control.CursorY);
-            float x = Game.GetControlValueNormalized(GTA.Control.CursorX);
-            float y = Game.GetControlValueNormalized(GTA.Control.CursorY);
-            
-            Function.Call(Hash.DRAW_RECT, x, y, 0.01f, 0.01f, 0, 0, 255, 255, false);
 
-            Vector3 dir;
-            Vector3 cam3DPos = ScreenRelToWorld(GameplayCamera.Position, GameplayCamera.Rotation, new Vector2(x, y), out dir);
-            //World.DrawMarker(MarkerType.DebugSphere, cam3DPos, Vector3.Zero, Vector3.Zero, new Vector3(0.01f, 0.01f, 0.01f), Color.Red);
+            //Game.EnableControlThisFrame(GTA.Control.CursorX);
+            //Game.EnableControlThisFrame(GTA.Control.CursorY);
+            //float x = Game.GetControlValueNormalized(GTA.Control.CursorX);
+            //float y = Game.GetControlValueNormalized(GTA.Control.CursorY);
 
-            RaycastResult r = World.Raycast(cam3DPos, dir, 50f, IntersectFlags.Everything, Game.Player.Character);
-            if (r.DidHit)
-            {
-                World.DrawMarker(MarkerType.DebugSphere, r.HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(0.2f, 0.2f, 0.2f), Color.Blue);
-            }
+            //Function.Call(Hash.DRAW_RECT, x, y, 0.01f, 0.01f, 0, 0, 255, 255, false);
+
+            //Vector3 dir;
+            //Vector3 cam3DPos = ScreenRelToWorld(GameplayCamera.Position, GameplayCamera.Rotation, new Vector2(x, y), out dir);
+            ////World.DrawMarker(MarkerType.DebugSphere, cam3DPos, Vector3.Zero, Vector3.Zero, new Vector3(0.01f, 0.01f, 0.01f), Color.Red);
+
+            //RaycastResult r = World.Raycast(cam3DPos, dir, 50f, IntersectFlags.Everything, Game.Player.Character);
+            //if (r.DidHit)
+            //{
+            //    World.DrawMarker(MarkerType.DebugSphere, r.HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(0.2f, 0.2f, 0.2f), Color.Blue);
+            //}
+
+
+
+
 
             // world to screen: using 3d coords to render to screen
-            Vector2 point2D;
-            if (World3DToScreen2D(player.Position, out point2D))
-            {
-                Function.Call(Hash.DRAW_RECT, point2D.X, point2D.Y, 0.1f, 0.1f, 0, 255, 255, 255, false);
-                //main.Sub(point2DZero.ToString());
-            }
+            Vector2 point2D = World3DToScreen2D(player.Position);
+            Function.Call(Hash.DRAW_RECT, point2D.X, point2D.Y, 0.1f, 0.1f, 0, 255, 255, 255, false);
+            //main.Sub(point2DZero.ToString());
             
             // get the coords of player head bone and draw a rect on it
             Vector3 v = Function.Call<Vector3>(Hash.GET_PED_BONE_COORDS, player, Bone.SkelHead);
-            if (World3DToScreen2D(v, out point2D))
-            {
-                Function.Call(Hash.DRAW_RECT, point2D.X, point2D.Y, 0.1f, 0.1f, 255, 255, 0, 255, false);
-                //main.Sub(point2D.ToString());
-            }
+            Vector2 v2 = World3DToScreen2D(v);
+
+
+            Function.Call(Hash.DRAW_RECT, v2.X, v2.Y, 0.1f, 0.1f, 255, 255, 0, 255, false);
+            //main.Sub(point2D.ToString());
+
         }
 
         void GetWeird()
         {
-            Entity[] NearbyEntities = World.GetNearbyEntities(player.Position, 25f);
+            Entity[] NearbyEntities = World.GetNearbyEntities(player.Position, 15f);
             foreach (var e in NearbyEntities)
             {
 
-                // there seems to be some entities that you can't delete without glitching it out
-                if (e is Ped)
+                if (e is Ped && e != player)
                 {
-                    if (e == player)
-                    {
-                        continue;
-                    }
 
-                    else if (e != player.AttachedEntity && e != player)
-                    {
-                        Vector3 v = Function.Call<Vector3>(Hash.GET_PED_BONE_COORDS, e.Handle, Bone.SkelHead);
-                        Vector2 point2D;
-                        if (World3DToScreen2D(v, out point2D))
-                        {
-                            Function.Call(Hash.DRAW_RECT, point2D.X, point2D.Y, 0.1f, 0.1f, 255, 255, 0, 255, false);
-                        }
+
+                    // draw every bone
+                    EntityBoneCollection ebc = e.Bones;
+                    foreach (EntityBone eb in ebc) {
+                        if(eb.Index == Bone.SkelHead) { 
+                        Vector3 v = eb.Position;
+                        //Vector3 v = Function.Call<Vector3>(Hash.GET_PED_BONE_COORDS, e.Handle, Bone.SkelHead);
+                        Vector2 point2D = World3DToScreen2D(v);
+                        Function.Call(Hash.DRAW_RECT, point2D.X, point2D.Y, 0.002f, 0.002f * 1.78, 255, 255, 0, 125, false);
+
+
+                        //World.DrawMarker(MarkerType.DebugSphere, eb.Position, Vector3.Zero, Vector3.Zero, new Vector3(0.25f, 0.25f, 0.25f), Color.Yellow);
+
+                        //Vector2 point = testtest(v);
+                        //Function.Call(Hash.DRAW_RECT, point.X, point.Y, 0.002f, 0.002f, 255, 255, 0, 125, false);
+                        //main.Sub(point.ToString());
                     }
+                    }
+                    //Vector3 v = Function.Call<Vector3>(Hash.GET_PED_BONE_COORDS, e.Handle, Bone.SkelHead);
+                    //Vector2 point2D;
+                    //if (World3DToScreen2D(v, out point2D))
+                    //{
+                    //    Function.Call(Hash.DRAW_RECT, point2D.X, point2D.Y, 0.1f, 0.1f, 255, 255, 0, 255, false);
+                    //}
+
                 }
             }
         }
 
-        public static bool World3DToScreen2D(Vector3 pos, out Vector2 result)
+        public static Vector2 World3DToScreen2D(Vector3 pos)
         {
             var x2dp = new OutputArgument();
             var y2dp = new OutputArgument();
 
-            
+            Function.Call<bool>(Hash.GET_SCREEN_COORD_FROM_WORLD_COORD, pos.X, pos.Y, pos.Z, x2dp, y2dp);
+            return new Vector2(x2dp.GetResult<float>(), y2dp.GetResult<float>());
+        }
+
+        public static bool TestWorld3DToScreen2D(Vector3 pos, out Vector2 result)
+        {
+            var x2dp = new OutputArgument();
+            var y2dp = new OutputArgument();
+
             bool success = Function.Call<bool>((Hash)0x34E82F05DF2974F5, pos.X, pos.Y, pos.Z, x2dp, y2dp); //  GET_SCREEN_COORD_FROM_WORLD_COORD and previously, _WORLD3D_TO_SCREEN2D
             result = new Vector2(x2dp.GetResult<float>(), y2dp.GetResult<float>());
             return success;
@@ -129,14 +150,14 @@ namespace Testing
 
             var point3D = camPos + camForward * 1.0f + camRightRoll + camUpRoll;
             Vector2 point2D;
-            if (!World3DToScreen2D(point3D, out point2D))
+            if (!TestWorld3DToScreen2D(point3D, out point2D))
             {
                 forwardDirection = camForward;
                 return camPos + camForward * 1.0f;
             }
             var point3DZero = camPos + camForward * 1.0f;
             Vector2 point2DZero;
-            if (!World3DToScreen2D(point3DZero, out point2DZero))
+            if (!TestWorld3DToScreen2D(point3DZero, out point2DZero))
             {
                 forwardDirection = camForward;
                 return camPos + camForward * 1.0f;
