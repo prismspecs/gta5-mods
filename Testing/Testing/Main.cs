@@ -24,8 +24,12 @@ namespace Testing
         // menu
         MenuPool menuPool;
         UIMenu modMenu;
-        UIMenuItem ImageTest;
-        UIMenuItem DeleteNearby;
+        UIMenuItem MI_ImageTest;
+        UIMenuItem MI_DeleteNearby;
+        UIMenuItem MI_Vehicle;
+        UIMenuItem MI_Covid;
+        UIMenuItem MI_Debug;
+        UIMenuItem MI_ImageFace;
 
         // drawing images
         GTA.UI.CustomSprite MySprite;
@@ -34,8 +38,17 @@ namespace Testing
         // threading
         AI instance = null;
 
+        // covid stuff
+        Covid covid = null;
+
+        // debug
+        bool Debug = false;
+
+        // image face
+        ImageFace imageFace = null;
+
         //
-        Ped player;
+        public Ped player;
         Vehicle vehicle;
 
         public Test()
@@ -52,17 +65,24 @@ namespace Testing
 
             // get player into position etc
             player = Game.Player.Character;
-            Sub(player.Position);
-            player.Position = new Vector3(30.9f,22.8f,70.055f); // arbitrary, nice road position
+            //Sub(player.Position);
 
-            // prepare players starting position
-            //DeleteAllNearby();
 
-            // put player in vehicle
-            vehicle = GTA.World.CreateVehicle(VehicleHash.Taxi, player.Position);
-            vehicle.PlaceOnGround();
-            player.Task.WarpIntoVehicle(vehicle, VehicleSeat.Driver);
+            // testing...
+            //if (covid == null)
+            //{
+            //    covid = InstantiateScript<Covid>();
+            //    covid.setMain(this);
+            //}
+
+            if (imageFace == null)
+            {
+                imageFace = InstantiateScript<ImageFace>();
+                imageFace.setMain(this);
+            }
         }
+
+
 
 
         #region Delete All Nearby Entities
@@ -90,35 +110,80 @@ namespace Testing
         #endregion
 
 
+
+
         #region Menu Item Selection Handler
         void MenuSelect(UIMenu sender, UIMenuItem item, int index)
         {
-            if(item == ImageTest) {
+            if(item == MI_ImageTest) {
                 DoImageTest();
             }
 
-            if(item == DeleteNearby)
+            if(item == MI_DeleteNearby)
             {
                 DeleteAllNearby();
             }
+
+            if (item == MI_Vehicle)
+            {
+                StartVehicle();
+            }
+
+            if (item == MI_Covid)
+            {
+                if(covid == null)
+                {
+                    covid = InstantiateScript<Covid>();
+                    covid.setMain(this);
+                }
+                    
+                    
+            }
+
+            if (item == MI_Debug)
+            {
+                Debug = !Debug;
+            }
+            if (item == MI_ImageFace)
+            {
+                if (imageFace == null)
+                {
+                    imageFace = InstantiateScript<ImageFace>();
+                    imageFace.setMain(this);
+                }
+            }
         }
         #endregion
+
+
 
         void SetupMenu()
         {
             modMenu = new UIMenu("Testing Menu", "Blah");
             menuPool.Add(modMenu);
 
-            ImageTest = new UIMenuItem("DL Image", "description");
-            modMenu.AddItem(ImageTest);
+            MI_ImageTest = new UIMenuItem("DL Image", "description");
+            modMenu.AddItem(MI_ImageTest);
 
-            DeleteNearby = new UIMenuItem("Delete Nearby", "delete all nearby entities");
-            modMenu.AddItem(DeleteNearby);
+            MI_DeleteNearby = new UIMenuItem("Delete Nearby", "delete all nearby entities");
+            modMenu.AddItem(MI_DeleteNearby);
+
+            MI_Covid = new UIMenuItem("Start Covid", "begin Covid simulation");
+            modMenu.AddItem(MI_Covid);
+
+            MI_Vehicle = new UIMenuItem("Start Vechile", "begin vehicle simulation");
+            modMenu.AddItem(MI_Vehicle);
+
+            MI_Debug = new UIMenuItem("Toggle Debug", "toggle debug mode");
+            modMenu.AddItem(MI_Debug);
+
+            MI_ImageFace = new UIMenuItem("Toggle Image Face", "toggle image face");
+            modMenu.AddItem(MI_ImageFace);
 
             GTA.UI.Screen.ShowSubtitle("setting up menu");
         }
 
-        void Sub(object logtext)
+        public void Sub(object logtext)
         {
             GTA.UI.Screen.ShowSubtitle(logtext.ToString());
         }
@@ -131,26 +196,31 @@ namespace Testing
                 menuPool.ProcessMenus();
             }
 
-            Vector3 source = player.Position;
 
-            // get 5 units in front of player
-            Vector3 direction = source + Game.Player.Character.ForwardVector * 25f;
+            if(Debug)
+            {
+                Vector3 source = player.Position;
 
-            //Vector3 spawnPos = Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 5, 0));
+                // get 5 units in front of player
+                Vector3 direction = source + Game.Player.Character.ForwardVector * 25f;
 
-            //RaycastResult rc = Raycast(Vector3 source, Vector3 direction, float maxDistance, IntersectOptions options, Entity ignoreEntity = null);
-            //RaycastResult rc = World.Raycast(source, direction, 999, IntersectOptions.Everything, null);
-            RaycastResult rc = World.Raycast(source, Game.Player.Character.ForwardVector, IntersectFlags.Everything);
+                //Vector3 spawnPos = Game.Player.Character.GetOffsetInWorldCoords(new Vector3(0, 5, 0));
 
-            
-            World.DrawMarker(MarkerType.VerticalCylinder, rc.HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 1f), Color.Yellow);
+                //RaycastResult rc = Raycast(Vector3 source, Vector3 direction, float maxDistance, IntersectOptions options, Entity ignoreEntity = null);
+                //RaycastResult rc = World.Raycast(source, direction, 999, IntersectOptions.Everything, null);
+                RaycastResult rc = World.Raycast(source, Game.Player.Character.ForwardVector, IntersectFlags.Everything);
 
 
-            World.DrawMarker(MarkerType.VerticalCylinder, World.GetCrosshairCoordinates().HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 2f), Color.Red);
+                World.DrawMarker(MarkerType.VerticalCylinder, rc.HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 1f), Color.Yellow);
 
-            //UI.Notify(rc.HitCoords.ToString());
 
-            if(IsDrawingSprite)
+                World.DrawMarker(MarkerType.VerticalCylinder, World.GetCrosshairCoordinates().HitPosition, Vector3.Zero, Vector3.Zero, new Vector3(1f, 1f, 2f), Color.Red);
+
+                //UI.Notify(rc.HitCoords.ToString());
+            }
+
+
+            if (IsDrawingSprite)
             {
                 DrawSprite(Game.Player.Character, MySprite);
             }
@@ -185,6 +255,20 @@ namespace Testing
 
             }
         }
+
+
+
+        void StartVehicle()
+        {
+            player.Position = new Vector3(30.9f, 22.8f, 70.055f); // arbitrary, nice road position
+
+            // put player in vehicle
+            vehicle = GTA.World.CreateVehicle(VehicleHash.Taxi, player.Position);
+            vehicle.PlaceOnGround();
+            player.Task.WarpIntoVehicle(vehicle, VehicleSeat.Driver);
+        }
+
+
 
         public void DoImageTest()
         {
