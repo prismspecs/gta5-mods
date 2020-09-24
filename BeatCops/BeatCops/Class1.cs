@@ -42,12 +42,12 @@ public class BeatCops : Script
             Ped player = Game.Player.Character;
             GTA.Math.Vector3 spawn_location = player.Position + (player.ForwardVector * 5f);
             //string model_name = "a_m_y_business_02";
-            string model_name = "s_m_y_cop_01";
+            string model_name = "dumbcop";
 
             Ped ped1 = GTA.World.CreatePed(model_name, spawn_location);
             ped1.Weapons.Give(WeaponHash.Bat, 999, true, true);
 
-            model_name = "s_m_y_cop_01";
+            model_name = "dumbcop";
             Ped ped2 = GTA.World.CreatePed(model_name, player.Position + (player.ForwardVector * 6f));
             ped2.Weapons.Give(WeaponHash.Bat, 999, true, true);
 

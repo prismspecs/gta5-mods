@@ -88,7 +88,6 @@ namespace Testing
                     // draw every bone
                     EntityBoneCollection ebc = e.Bones;
                     foreach (EntityBone eb in ebc) {
-                        if(eb.Index == Bone.SkelHead) { 
                         Vector3 v = eb.Position;
                         //Vector3 v = Function.Call<Vector3>(Hash.GET_PED_BONE_COORDS, e.Handle, Bone.SkelHead);
                         Vector2 point2D = World3DToScreen2D(v);
@@ -100,7 +99,6 @@ namespace Testing
                         //Vector2 point = testtest(v);
                         //Function.Call(Hash.DRAW_RECT, point.X, point.Y, 0.002f, 0.002f, 255, 255, 0, 125, false);
                         //main.Sub(point.ToString());
-                    }
                     }
                     //Vector3 v = Function.Call<Vector3>(Hash.GET_PED_BONE_COORDS, e.Handle, Bone.SkelHead);
                     //Vector2 point2D;

@@ -37,7 +37,8 @@ namespace Testing
 
             if (ped == null)
             {
-                ped = World.CreatePed(PedHash.Beach01AMY, Game.Player.Character.Position + (GTA.Math.Vector3.RelativeFront * 3));
+                ped = World.CreatePed("dumbcop", Game.Player.Character.Position + (GTA.Math.Vector3.RelativeFront * 3));
+                //ped = World.CreatePed(PedHash.Beach01AMY, Game.Player.Character.Position + (GTA.Math.Vector3.RelativeFront * 3));
             }
 
             // Repeat animation if alive
