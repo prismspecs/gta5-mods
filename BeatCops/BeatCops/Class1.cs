@@ -45,6 +45,7 @@ public class BeatCops : Script
             string model_name = "dumbcop";
 
             Ped ped1 = GTA.World.CreatePed(model_name, spawn_location);
+            
             ped1.Weapons.Give(WeaponHash.Bat, 999, true, true);
 
             model_name = "dumbcop";
