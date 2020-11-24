@@ -4,7 +4,7 @@
   + http://www.dev-c.com/gtav/scripthookv/
 + Download and install the latest Script Hook V .NET and place in main GTA dir
   + https://github.com/crosire/scripthookvdotnet/releases
-  
+
 ## Getting Visual Studio set up for modding
 Install the following
 + Under "Workloads"
@@ -55,14 +55,35 @@ public class Test : Script
 Make sure to set up ScriptHookVDotNet.ini with a reload key
 ```
 ReloadKey=Insert
-ConsoleKey=F4 
+ConsoleKey=F4
 ```
 
-Used savegame to bypass prologue mission
-+ https://www.gta5-mods.com/misc/fresh-start-introduction-completed-savegame
-+ or fully complete game: https://www.gta5-mods.com/misc/ultimate-100-perfect-game-save-flava0ne/download/15076
+## Used savegame to bypass prologue mission
++ https://www.gta5-mods.com/misc/ultimate-100-perfect-game-save-flava0ne/download/15076
++ place in C:\Users\grays\Documents\Rockstar Games\GTA V\Profiles\C7BE9152 (will be slightly different)
+
+## Install OpenIV
++ https://openiv.com/
++ Once installed, Tools -> ASI Manager and install OpenIV.ASI
++ Close OpenIV
++ "mods" folder will now be in GTA5 directory
++ copy/paste "update" and "x64" folders from GTA5 dir to "mods"
+
+## Add peds
++ As per https://www.youtube.com/watch?v=e3s8AL9K2aE&t=931s
++ In OpenIV find dcllist.xml and add ```<Item>dlcpacks:/addonpeds/</Item>``` to the bottom of the list
++ Download addonpeds from https://www.gta5-mods.com/scripts/addonpeds-asi-pedselector
++ Follow instructions for addonpeds (place dll in scripts, place addonpeds folder in ../x64/dlcpacks/)
++ I also just put the Addon Peds editor exe and xml file in scripts
++ Launch Addon Peds Editor
+  + Ped -> New Ped
+  + call it "dumbcop"
+  + search for "s_m_y_cop_01" in OpenIV and extract all the (4) relevant files
+  + move those extracted files into the dlcpacks/addonpeds/dlc.rpf/peds.rpf dir in OpenIV
+  + rename these files to dumpcop.ydd and so on
+  + hit REBUILD
   
- 
+
 ## Open source mods
 + https://www.fosmods.com/gta5
 + https://github.com/crosire/scripthookvdotnet/wiki/Code-Snippets
